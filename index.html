@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership SNACK</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Arial', sans-serif; background: #f0f0f0; padding: 20px; }
+.toolbar { max-width: 794px; margin: 0 auto 12px; display: flex; justify-content: flex-end; gap: 8px; }
+.abtn { font-family: 'Arial', sans-serif; font-size: 13px; padding: 8px 16px; border-radius: 8px; border: 1px solid #ccc; background: white; cursor: pointer; color: #555; }
+.abtn.jpg { background: #534AB7; color: white; border-color: #534AB7; font-weight: 700; }
+#nl-page { max-width: 794px; margin: 0 auto; background: #fff; }
+.nl-header { }
+
+
+.nl-brand { font-size: 12px; color: rgba(255,255,255,0.65); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+.nl-main-title { font-size: 26px; font-weight: 700; color: #fff; line-height: 1.35; }
+.nl-date { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+.nl-body { padding: 0 40px 40px; }
+.sec { padding: 26px 0; border-bottom: 1px solid #f0f0f0; }
+.sec:last-child { border-bottom: none; }
+.badge { display: inline-flex; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 0.04em; }
+.b1 { background: #EEEDFE; color: #3C3489; }
+.b2 { background: #FBEAF0; color: #72243E; }
+.b3 { background: #E1F5EE; color: #085041; }
+.b4 { background: #FAEEDA; color: #633806; }
+.b5 { background: #FAECE7; color: #4A1B0C; }
+.b6 { background: #EAF3DE; color: #27500A; }
+.b7 { background: #F1EFE8; color: #444441; }
+.sec h2 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; line-height: 1.4; }
+.sec p { font-size: 14px; line-height: 1.85; color: #444; margin-bottom: 8px; }
+.sec p:last-child { margin-bottom: 0; }
+.voice-list { display: flex; flex-direction: column; gap: 14px; }
+.voice-card { background: #fafafa; border-left: 3px solid #534AB7; border-radius: 0 8px 8px 0; padding: 14px 16px; }
+.voice-quote { font-size: 14px; line-height: 1.8; color: #333; font-style: italic; margin-bottom: 8px; }
+.voice-meta { font-size: 12px; color: #888; font-weight: 700; }
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+.stat-card { background: #f5f4ff; border-radius: 8px; padding: 16px 12px; text-align: center; }
+.stat-val { font-size: 26px; font-weight: 700; color: #534AB7; margin-bottom: 5px; }
+.stat-lbl { font-size: 12px; color: #666; line-height: 1.5; }
+.stat-note { font-size: 13px; color: #666; line-height: 1.7; margin-top: 10px; }
+.q-list { display: flex; flex-direction: column; gap: 12px; }
+.q-item { display: flex; gap: 12px; align-items: flex-start; }
+.q-num { width: 24px; height: 24px; border-radius: 50%; background: #EEEDFE; color: #3C3489; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.q-text { font-size: 14px; line-height: 1.8; color: #444; }
+.act-list { display: flex; flex-direction: column; gap: 14px; }
+.act-item { display: flex; gap: 12px; align-items: flex-start; }
+.act-dot { width: 8px; height: 8px; border-radius: 50%; background: #534AB7; flex-shrink: 0; margin-top: 7px; }
+.act-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+.act-body { font-size: 13px; line-height: 1.75; color: #555; }
+.ref-intro { font-size: 14px; line-height: 1.85; color: #444; margin-bottom: 16px; }
+.ksa-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 13px; }
+.ksa-table th { background: #534AB7; color: white; padding: 10px 14px; text-align: left; font-weight: 700; }
+.ksa-table td { padding: 10px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; color: #444; line-height: 1.7; }
+.ksa-table tr:last-child td { border-bottom: none; }
+.ksa-table tr:nth-child(even) td { background: #fafafa; }
+.ksa-label { font-weight: 700; color: #534AB7; }
+.ksa-cases { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+.ksa-case { border-radius: 8px; padding: 14px 16px; }
+.ksa-case.k { background: #E6F1FB; border-left: 3px solid #185FA5; }
+.ksa-case.s { background: #E1F5EE; border-left: 3px solid #0F6E56; }
+.ksa-case.a { background: #FAEEDA; border-left: 3px solid #854F0B; }
+.ksa-case-head { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.ksa-case.k .ksa-case-head { color: #0C447C; }
+.ksa-case.s .ksa-case-head { color: #085041; }
+.ksa-case.a .ksa-case-head { color: #633806; }
+.ksa-quote { font-size: 13px; font-style: italic; color: #333; line-height: 1.7; margin-bottom: 6px; padding: 8px 12px; background: rgba(255,255,255,0.6); border-radius: 4px; }
+.ksa-desc { font-size: 13px; color: #555; line-height: 1.7; }
+.ref-closing { font-size: 14px; line-height: 1.85; color: #444; margin-top: 16px; padding-top: 16px; border-top: 1px solid #f0f0f0; }
+.nl-footer { background: #534AB7; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; }
+.nl-footer span { font-size: 12px; color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button class="abtn jpg" onclick="saveJPG()">JPG 저장 (A4)</button>
+</div>
+<div id="nl-page">
+  <div class="nl-header" style="background:#3C3489; padding:40px 40px 36px;">
+    <div class="nl-brand">Leadership SNACK</div>
+    <div class="nl-main-title">평가 시즌이 다가오고 있어요.. !!<br>평가 면담, 어떻게 하면 좋을까요?</div>
+    <div class="nl-date">2026년 4월 27일</div>
+  </div>
+  <div class="nl-body">
+    <div class="sec">
+      <div class="badge b1">✦ 에디터 레터</div>
+      <h2>평가 면담, 리더가 하고 싶은 말을 하는 것이 아닌 리더가 해야 할 말을 하는 자리</h2>
+      <p>객관적인 평가는 리더의 역할 중 매우 중요한 부분을 차지합니다. 그리고 평가 면담은 바로 그 평가의 이유를 구성원에게 직접 전달하는 자리입니다. 리더는 평가에 대한 책임을 져야 하고, 그 이유를 구성원에게 명확하게 설명할 수 있어야 합니다.</p>
+      <p>평가 면담은 단순히 점수를 통보하는 자리가 아닙니다. 구성원이 자신의 성과를 인정받고, 향후 성장 방향을 리더와 함께 논의하는 중요한 리더십 활동입니다. 이번 호에서는 리더가 '하고 싶은 말'이 아닌 '해야 할 말'을 할 수 있는 평가 면담을 함께 살펴봅니다.</p>
+    </div>
+    <div class="sec">
+      <div class="badge b2">❝ 리더의 목소리</div>
+      <h2>현장의 리더들은 어떻게 말할까요</h2>
+      <div class="voice-list">
+        <div class="voice-card">
+          <div class="voice-quote">"저는 면담 전에 팀원에게 먼저 자기 평가를 써오게 해요. 그러면 면담이 훨씬 편해지더라고요. 제가 말하기 전에 팀원 스스로 아쉬운 점을 먼저 꺼내는 경우도 많아요."</div>
+          <div class="voice-meta">— 사업팀 팀장, 경력 12년</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-quote">"과거 잘못을 지적하는 게 아니라 '앞으로 어떻게 하면 좋겠다'는 방향으로 얘기하니까 팀원들이 방어적으로 반응하는 게 줄었어요. 면담 분위기 자체가 달라졌습니다."</div>
+          <div class="voice-meta">— 전략팀 팀장, 경력 15년</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-quote">"결과만 말하지 말고 과정도 같이 봐줘야 해요. '성과는 아쉬웠지만, 이 상황에서 이런 노력을 했다는 건 제가 다 알고 있어요'라는 말 한 마디가 팀원의 태도를 완전히 바꾸더라고요."</div>
+          <div class="voice-meta">— 서비스 개발팀 팀장, 경력 10년</div>
+        </div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="badge b3">◎ 리더십 인사이트</div>
+      <h2>좋은 평가 면담이 갖춰야 할 3가지 조건</h2>
+      <p>평가 면담을 어렵게 만드는 가장 큰 이유는 '전달'에만 집중하기 때문입니다. 하지만 면담의 핵심은 전달이 아니라 대화입니다. 첫 번째 조건은 '사실 근거'입니다. 좋든 나쁘든 평가의 근거는 반드시 구체적인 사례여야 합니다. "열심히 했어요"보다 "3월 프로젝트에서 기한보다 이틀 앞서 납품했고, 고객 만족도도 팀 최고였어요"가 팀원에게 훨씬 깊이 남습니다.</p>
+      <p>두 번째 조건은 '미래 지향성'입니다. 평가 면담의 목적은 과거를 심판하는 것이 아니라 앞으로의 성장을 설계하는 것입니다. "이 부분이 아쉬웠어요" 다음에는 반드시 "다음에는 이렇게 해보면 어떨까요?"가 따라와야 합니다. 세 번째는 '심리적 안전감'입니다. 팀원이 솔직하게 말할 수 있는 분위기를 만드세요.</p>
+      <p>이 세 가지가 갖춰진 평가 면담은 팀원에게 '나는 이 팀에서 성장할 수 있다'는 확신을 심어줍니다. 그리고 그 확신이 다음 반기 성과의 씨앗이 됩니다.</p>
+    </div>
+    <div class="sec">
+      <div class="badge b4">▲ 숫자로 보는 리더십</div>
+      <h2>평가 면담, 데이터로 보면 이렇습니다</h2>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-val">74%</div><div class="stat-lbl">평가 면담 후 방향이 명확해졌다고 느낀 직원 비율</div></div>
+        <div class="stat-card"><div class="stat-val">3.2배</div><div class="stat-lbl">미래 중심 면담 후 팀원의 목표 달성률 차이</div></div>
+        <div class="stat-card"><div class="stat-val">58%</div><div class="stat-lbl">평가 결과보다 '면담 방식'이 더 중요하다고 답한 직원 비율</div></div>
+      </div>
+      <p class="stat-note">팀원은 점수보다 '어떻게 대화했는가'를 더 오래 기억합니다. 평가 면담의 질이 팀 신뢰의 질을 결정합니다.</p>
+    </div>
+    <div class="sec">
+      <div class="badge b5">● 리더의 질문</div>
+      <h2>나는 어떤 평가 면담을 하고 있을까</h2>
+      <div class="q-list">
+        <div class="q-item"><div class="q-num">1</div><div class="q-text">지난 평가 면담에서 팀원이 자신의 생각을 말할 시간이 충분히 있었나요, 아니면 제가 대부분의 시간을 말했나요?</div></div>
+        <div class="q-item"><div class="q-num">2</div><div class="q-text">평가 결과를 전달할 때, 구체적인 사례와 근거를 함께 제시했나요? 아니면 "전반적으로 아쉬웠어요" 수준에 머물렀나요?</div></div>
+        <div class="q-item"><div class="q-num">3</div><div class="q-text">면담이 끝난 후 팀원이 "다음에 무엇을 어떻게 해야 할지 알겠다"고 느꼈을까요? 그것을 확인한 적이 있나요?</div></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="badge b6">✓ 실천 과제</div>
+      <h2>이번 평가 면담, 딱 3가지만 챙기세요</h2>
+      <div class="act-list">
+        <div class="act-item"><div class="act-dot"></div><div><div class="act-title">면담 전, 팀원에게 자기 평가를 먼저 써오게 하세요</div><div class="act-body">"면담 전에 이번 반기 본인의 성과와 아쉬운 점을 간단히 정리해 오세요"라고 요청해보세요. 팀원이 스스로 생각할 시간을 갖고, 면담이 일방적인 통보가 아닌 대화가 됩니다.</div></div></div>
+        <div class="act-item"><div class="act-dot"></div><div><div class="act-title">아쉬운 점을 말할 땐 반드시 '다음'을 붙이세요</div><div class="act-body">"이 부분이 아쉬웠어요" 뒤에는 항상 "다음에는 이렇게 해보면 어떨까요?"를 붙이는 것을 원칙으로 삼아보세요. 과거 지적이 아닌 미래 설계가 되면 팀원의 반응이 달라집니다.</div></div></div>
+        <div class="act-item"><div class="act-dot"></div><div><div class="act-title">면담 마지막 5분, 팀원에게 마이크를 주세요</div><div class="act-body">"오늘 면담에서 하고 싶은 말이 더 있나요?" 혹은 "저한테 바라는 점이 있다면 말해줘요"라고 물어보세요. 이 한 마디가 팀원이 면담을 '대화하는 자리'로 기억하게 만듭니다.</div></div></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="badge b7">📎 참고하세요!</div>
+      <h2>성과가 저조한 구성원, KSA로 피드백하세요</h2>
+      <p class="ref-intro">신임 팀장님들이 가장 어려워하는 것이 있다면 아마도 '피드백'일 겁니다. 특히 성과가 저조한 구성원에게 어떤 식으로 말을 해야 좋을지 모르겠다는 분들이 많습니다. 핵심은 성과가 저조한 이유가 <strong>역량(KSA) 때문인지, 일하는 방식의 문제인지</strong>를 먼저 파악하는 것입니다.</p>
+      <table class="ksa-table">
+        <tr><th style="width:22%">구분</th><th style="width:40%">의미</th><th>예시</th></tr>
+        <tr><td><span class="ksa-label">K (Knowledge)</span></td><td>학습을 통해 습득되는 특정 분야의 정보·지식</td><td style="color:#666;font-size:13px;">영업 사원의 경우 판매하는 상품/서비스에 대한 지식</td></tr>
+        <tr><td><span class="ksa-label">S (Skill)</span></td><td>훈련을 통해 습득되는 업무 수행 능력</td><td style="color:#666;font-size:13px;">엑셀, 파워포인트, 커뮤니케이션 능력 등</td></tr>
+        <tr><td><span class="ksa-label">A (Attitude)</span></td><td>업무 진행 시 나타나는 태도와 행동</td><td style="color:#666;font-size:13px;">영업할 때 적극적이다, 회의할 때 자꾸 딴짓을 한다 등</td></tr>
+      </table>
+      <p style="font-size:13px;color:#555;line-height:1.8;margin-bottom:16px;">KSA는 덧셈이 아닌 <strong>곱셈의 관계</strong>입니다. 어느 것 하나라도 '0'이면 모두 '0'이 되어버립니다.</p>
+      <div class="ksa-cases">
+        <div class="ksa-case k"><div class="ksa-case-head">K가 부족한 경우 — 지식·정보가 부족할 때</div><div class="ksa-quote">"최 대리님이 고객과 통화하는 내용을 들어보니, 우리 상품의 특징에 대한 설명이 부족하다고요… 개인 학습 시간을 가지면 좋겠습니다."</div><div class="ksa-desc">부족한 지식은 공부를 통해 해결할 수밖에 없습니다. 관련 세미나 참석이나 개인 학습 시간을 권유하세요.</div></div>
+        <div class="ksa-case s"><div class="ksa-case-head">S가 부족한 경우 — 실행 능력이 부족할 때</div><div class="ksa-quote">"고객이 거절했을 때 대응을 어려워하더군요. 고객의 반응별·상황별 시나리오를 써보고 반복적으로 연습하면 실전에서 당황하는 일이 줄어들 거예요."</div><div class="ksa-desc">스킬은 꾸준한 반복을 통해 수준을 올릴 수 있습니다. 내부 전문가를 매칭해 주거나 연습 기회를 꾸준히 만들어 주세요.</div></div>
+        <div class="ksa-case a"><div class="ksa-case-head">A가 부족한 경우 — 태도·마인드가 문제일 때</div><div class="ksa-quote">"'시장 상황이 안 좋아서 어쩔 수 없다'는 말을 자주 하시더라고요. 대리님도 현 상황에서 해볼 수 있는 것이 무엇인지 찾는 노력을 해주면 좋겠습니다."</div><div class="ksa-desc">행동에 대한 비난이 아닌, 그 행동이 조직에 끼치는 부정적인 영향력을 설명하며 행동 개선을 요구하세요.</div></div>
+      </div>
+      <p class="ref-closing">사람은 '이유'를 알아야 '납득'을 하고, '납득'이 됐을 때 '행동'이 바뀝니다. 성과가 부족한 구성원에게는 구체적인 KSA 피드백을 통해 부족한 역량을 기를 수 있도록 도와주세요.</p>
+    </div>
+  </div>
+  <div class="nl-footer">
+    <span>Leadership SNACK</span>
+    <span>2026년 4월 27일</span>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+async function saveJPG() {
+  const btn = document.querySelector('.abtn.jpg');
+  btn.textContent = '저장 중...';
+  btn.disabled = true;
+  try {
+    const el = document.getElementById('nl-page');
+    const canvas = await html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      width: 794,
+      windowWidth: 900
+    });
+    const link = document.createElement('a');
+    link.download = 'LeadershipSNACK_평가면담.jpg';
+    link.href = canvas.toDataURL('image/jpeg', 0.95);
+    link.click();
+  } catch(e) {
+    alert('저장 오류: ' + e.message);
+  } finally {
+    btn.textContent = 'JPG 저장 (A4)';
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
