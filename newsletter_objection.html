@@ -1,0 +1,281 @@
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Arial', sans-serif; background: transparent; }
+.toolbar { display: flex; justify-content: flex-end; gap: 8px; padding: 0 0 12px; }
+.abtn { font-family: 'Arial', sans-serif; font-size: 13px; padding: 7px 16px; border-radius: 8px; border: 0.5px solid var(--color-border-secondary); background: transparent; cursor: pointer; color: var(--color-text-secondary); }
+.abtn:hover { background: var(--color-background-secondary); }
+.abtn.jpg { background: #534AB7; color: white; border-color: #534AB7; font-weight: 700; }
+.abtn.jpg:hover { opacity: 0.88; }
+
+#nl-page { width: 794px; background: #ffffff; font-family: 'Arial', sans-serif; }
+
+.nl-header { background: #3C3489; padding: 40px 40px 36px; }
+.nl-brand { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+.nl-main-title { font-size: 28px; font-weight: 700; color: #ffffff; line-height: 1.35; }
+.nl-date { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 10px; }
+
+.nl-body { padding: 0 40px 40px; background: #fff; }
+.sec { padding: 26px 0; border-bottom: 1px solid #f0f0f0; }
+.sec:last-child { border-bottom: none; }
+.badge { display: inline-flex; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; margin-bottom: 10px; letter-spacing: 0.04em; }
+.b1 { background: #EEEDFE; color: #3C3489; }
+.b2 { background: #FBEAF0; color: #72243E; }
+.b3 { background: #E1F5EE; color: #085041; }
+.b4 { background: #FAEEDA; color: #633806; }
+.b5 { background: #FAECE7; color: #4A1B0C; }
+.b6 { background: #EAF3DE; color: #27500A; }
+.b7 { background: #F1EFE8; color: #444441; }
+.sec h2 { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; line-height: 1.4; }
+.sec p { font-size: 14px; line-height: 1.85; color: #444; margin-bottom: 8px; }
+.sec p:last-child { margin-bottom: 0; }
+
+.voice-list { display: flex; flex-direction: column; gap: 14px; }
+.voice-card { background: #fafafa; border-left: 3px solid #534AB7; border-radius: 0 8px 8px 0; padding: 14px 16px; }
+.voice-quote { font-size: 14px; line-height: 1.8; color: #333; font-style: italic; margin-bottom: 8px; }
+.voice-meta { font-size: 12px; color: #888; font-weight: 700; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0; }
+.stat-card { background: #f5f4ff; border-radius: 8px; padding: 16px 12px; text-align: center; }
+.stat-val { font-size: 26px; font-weight: 700; color: #534AB7; margin-bottom: 5px; }
+.stat-lbl { font-size: 12px; color: #666; line-height: 1.5; }
+.stat-note { font-size: 13px; color: #666; line-height: 1.7; margin-top: 10px; }
+
+.q-list { display: flex; flex-direction: column; gap: 12px; }
+.q-item { display: flex; gap: 12px; align-items: flex-start; }
+.q-num { width: 24px; height: 24px; border-radius: 50%; background: #EEEDFE; color: #3C3489; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.q-text { font-size: 14px; line-height: 1.8; color: #444; }
+
+.act-list { display: flex; flex-direction: column; gap: 14px; }
+.act-item { display: flex; gap: 12px; align-items: flex-start; }
+.act-dot { width: 8px; height: 8px; border-radius: 50%; background: #534AB7; flex-shrink: 0; margin-top: 7px; }
+.act-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+.act-body { font-size: 13px; line-height: 1.75; color: #555; }
+
+.ref-intro { font-size: 14px; line-height: 1.85; color: #444; margin-bottom: 16px; }
+.tip-list { display: flex; flex-direction: column; gap: 12px; }
+.tip-item { background: #fafafa; border-radius: 8px; padding: 14px 16px; border-left: 3px solid #AFA9EC; }
+.tip-label { font-size: 12px; font-weight: 700; color: #534AB7; margin-bottom: 5px; }
+.tip-bad { font-size: 13px; color: #c0392b; line-height: 1.7; margin-bottom: 6px; font-style: italic; }
+.tip-good { font-size: 13px; color: #085041; line-height: 1.7; font-style: italic; }
+.tip-arrow { font-size: 11px; color: #888; margin: 4px 0; }
+
+.nl-footer { background: #534AB7; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; }
+.nl-footer span { font-size: 12px; color: rgba(255,255,255,0.7); }
+</style>
+
+<div class="toolbar">
+  <button class="abtn" onclick="copyTxt()">텍스트 복사</button>
+  <button class="abtn jpg" onclick="saveJPG()">JPG 저장 (A4)</button>
+</div>
+
+<div id="nl-page">
+  <div class="nl-header">
+    <div class="nl-brand">Leadership SNACK</div>
+    <div class="nl-main-title">구성원이 이의제기를 했어요.<br>리더, 어떻게 대응해야 할까요?</div>
+    <div class="nl-date">2026년 5월 4일</div>
+  </div>
+
+  <div class="nl-body">
+
+    <div class="sec">
+      <div class="badge b1">✦ 에디터 레터</div>
+      <h2>이의제기, 리더의 권위에 대한 도전이 아닙니다</h2>
+      <p>평가 결과가 공개되면 꼭 한두 명의 구성원이 이의제기를 합니다. 그 순간 많은 리더들이 본능적으로 방어적이 됩니다. "내가 틀렸다는 거야?" "이걸 문제 삼다니 배은망덕한 거 아니야?" 하지만 이의제기는 리더의 권위에 대한 도전이 아닙니다. 구성원이 자신의 성과를 진지하게 생각하고 있다는 신호이며, 리더와 신뢰 관계를 유지하고 싶다는 의지의 표현일 수 있습니다. 이번 호에서는 이의제기를 위기가 아닌 기회로 만드는 리더의 대응법을 살펴봅니다.</p>
+    </div>
+
+    <div class="sec">
+      <div class="badge b2">❝ 리더의 목소리</div>
+      <h2>현장의 리더들은 어떻게 말할까요</h2>
+      <div class="voice-list">
+        <div class="voice-card">
+          <div class="voice-quote">"처음에는 이의제기를 받으면 솔직히 기분이 나빴어요. 근데 어느 순간 '이 친구가 이만큼 자기 일에 진심이구나'라고 생각하니까 오히려 고마운 마음이 들더라고요. 지금은 이의제기를 제대로 된 대화의 시작으로 봐요."</div>
+          <div class="voice-meta">— 사업팀 팀장, 경력 12년</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-quote">"이의제기를 무시하거나 짧게 넘기면 그 구성원은 다음 해에 조용히 떠날 준비를 합니다. 반대로 진지하게 들어주면 설령 결과가 바뀌지 않아도 신뢰는 오히려 올라가더라고요."</div>
+          <div class="voice-meta">— 전략팀 팀장, 경력 15년</div>
+        </div>
+        <div class="voice-card">
+          <div class="voice-quote">"이의제기 면담을 할 때 저는 먼저 '어떤 부분이 납득이 안 됐는지 말해줘요'라고 시작해요. 제가 설명하기 전에 먼저 구성원의 말을 다 듣는 게 핵심인 것 같아요."</div>
+          <div class="voice-meta">— 서비스 개발팀 팀장, 경력 10년</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="badge b3">◎ 리더십 인사이트</div>
+      <h2>이의제기 대응, 3단계로 정리하세요</h2>
+      <p>이의제기를 받았을 때 리더가 가장 먼저 해야 할 일은 '반박'이 아니라 '경청'입니다. 구성원이 이의를 제기하는 이유는 크게 두 가지입니다. 첫 번째는 평가 기준을 몰랐거나 오해한 경우, 두 번째는 자신의 노력이나 성과가 충분히 반영되지 않았다고 느끼는 경우입니다. 두 경우 모두 리더가 먼저 들어야 풀립니다.</p>
+      <p>1단계는 '감정 수용'입니다. "그렇게 느꼈군요. 말해줘서 고마워요"라는 한 마디가 방어적인 대화를 열린 대화로 바꿉니다. 2단계는 '근거 재확인'입니다. 평가의 근거가 된 구체적인 사례와 기준을 차분히 다시 설명하세요. 이때 중요한 건 '내가 옳다'를 증명하는 게 아니라 '왜 이 평가가 나왔는지'를 이해시키는 것입니다.</p>
+      <p>3단계는 '앞으로의 방향 제시'입니다. 결과가 바뀌든 바뀌지 않든, 면담의 마지막은 반드시 미래로 끝내야 합니다. "이번 결과와 별개로, 다음 반기에는 이런 부분을 함께 만들어가면 좋겠어요"라는 말이 구성원에게 희망을 심어줍니다.</p>
+    </div>
+
+    <div class="sec">
+      <div class="badge b4">▲ 숫자로 보는 리더십</div>
+      <h2>이의제기, 데이터로 보면 이렇습니다</h2>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-val">67%</div>
+          <div class="stat-lbl">이의제기 후 리더 대응에 실망해 이직을 고려한 직원 비율</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">4배</div>
+          <div class="stat-lbl">이의제기를 진지하게 들어준 리더의 팀 신뢰도 상승 효과</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">82%</div>
+          <div class="stat-lbl">결과가 바뀌지 않아도 경청만으로 수용도가 높아졌다는 직원 비율</div>
+        </div>
+      </div>
+      <p class="stat-note">이의제기 결과보다 리더의 태도가 더 오래 기억됩니다. 결과를 바꾸지 못해도 신뢰는 지킬 수 있습니다.</p>
+    </div>
+
+    <div class="sec">
+      <div class="badge b5">● 리더의 질문</div>
+      <h2>나는 이의제기에 어떻게 반응하고 있을까</h2>
+      <div class="q-list">
+        <div class="q-item">
+          <div class="q-num">1</div>
+          <div class="q-text">구성원이 이의제기를 했을 때, 나의 첫 반응은 '경청'이었나요, 아니면 '반박'이었나요? 그 순간 구성원은 어떤 표정이었나요?</div>
+        </div>
+        <div class="q-item">
+          <div class="q-num">2</div>
+          <div class="q-text">평가의 근거를 구성원이 납득할 수 있는 언어로 설명할 수 있나요? 단순히 "기준이 그래요"가 아닌 구체적인 사례로 설명할 준비가 되어 있나요?</div>
+        </div>
+        <div class="q-item">
+          <div class="q-num">3</div>
+          <div class="q-text">이의제기 면담이 끝난 후, 구성원이 '그래도 우리 팀장은 내 말을 들어줬다'고 느꼈을까요? 그 확신이 있으신가요?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="badge b6">✓ 실천 과제</div>
+      <h2>이의제기 면담, 이렇게 준비하세요</h2>
+      <div class="act-list">
+        <div class="act-item">
+          <div class="act-dot"></div>
+          <div>
+            <div class="act-title">면담 전, 해당 구성원의 평가 근거를 다시 한번 정리하세요</div>
+            <div class="act-body">구체적인 사례 2~3가지를 미리 준비해두세요. "기억이 잘 안 나는데요"는 구성원의 신뢰를 한순간에 무너뜨립니다. 준비된 리더가 신뢰받는 리더입니다.</div>
+          </div>
+        </div>
+        <div class="act-item">
+          <div class="act-dot"></div>
+          <div>
+            <div class="act-title">먼저 다 들은 후에 말하세요</div>
+            <div class="act-body">구성원이 말을 끝내기 전에 끊지 마세요. 다 듣고 난 후 "말해줘서 고마워요. 제가 설명드릴게요"로 시작하면 대화의 온도가 완전히 달라집니다.</div>
+          </div>
+        </div>
+        <div class="act-item">
+          <div class="act-dot"></div>
+          <div>
+            <div class="act-title">결과와 관계없이 다음 반기 이야기로 마무리하세요</div>
+            <div class="act-body">"이번 결과를 바탕으로 다음 반기에는 어떤 부분을 함께 만들어가면 좋을지 얘기해볼까요?" 이 한 마디가 이의제기 면담을 성장의 대화로 바꿉니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="badge b7">📎 참고하세요!</div>
+      <h2>이런 말은 피하세요 — 이의제기 면담 NG 표현</h2>
+      <p class="ref-intro">이의제기 면담에서 리더가 무심코 하는 말 한 마디가 구성원의 마음을 닫아버릴 수 있습니다. 아래 표현들을 피하고, 대신 이렇게 말해보세요.</p>
+      <div class="tip-list">
+        <div class="tip-item">
+          <div class="tip-label">❌ 피해야 할 말 → ✅ 이렇게 바꿔보세요</div>
+          <div class="tip-bad">❌ "기준이 원래 그래요. 어쩔 수 없어요."</div>
+          <div class="tip-arrow">↓</div>
+          <div class="tip-good">✅ "평가 기준을 제가 좀 더 명확하게 설명드렸어야 했는데, 이번 기회에 같이 짚어볼게요."</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-label">❌ 피해야 할 말 → ✅ 이렇게 바꿔보세요</div>
+          <div class="tip-bad">❌ "다른 팀원들은 아무도 이의제기 안 했어요."</div>
+          <div class="tip-arrow">↓</div>
+          <div class="tip-good">✅ "말해줘서 고마워요. 이런 이야기를 꺼내기 쉽지 않았을 텐데."</div>
+        </div>
+        <div class="tip-item">
+          <div class="tip-label">❌ 피해야 할 말 → ✅ 이렇게 바꿔보세요</div>
+          <div class="tip-bad">❌ "제가 보기엔 충분히 잘했다고 생각 안 해요."</div>
+          <div class="tip-arrow">↓</div>
+          <div class="tip-good">✅ "이 부분에서 아쉬웠던 구체적인 이유를 설명드릴게요. 들어보시고 의견 주세요."</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nl-footer">
+    <span>Leadership SNACK</span>
+    <span>2026년 5월 4일</span>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+async function saveJPG() {
+  const btn = document.querySelector('.abtn.jpg');
+  btn.textContent = '저장 중...';
+  btn.disabled = true;
+  try {
+    const el = document.getElementById('nl-page');
+    const canvas = await html2canvas(el, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#ffffff',
+      width: 794,
+      windowWidth: 900
+    });
+    const link = document.createElement('a');
+    link.download = 'LeadershipSNACK_이의제기대응.jpg';
+    link.href = canvas.toDataURL('image/jpeg', 0.95);
+    link.click();
+  } catch(e) {
+    alert('저장 오류: ' + e.message);
+  } finally {
+    btn.textContent = 'JPG 저장 (A4)';
+    btn.disabled = false;
+  }
+}
+
+function copyTxt() {
+  const txt = `[Leadership SNACK] 구성원이 이의제기를 했어요. 리더, 어떻게 대응해야 할까요?
+
+[에디터 레터] 이의제기, 리더의 권위에 대한 도전이 아닙니다
+이의제기는 구성원이 자신의 성과를 진지하게 생각하고 있다는 신호이며, 리더와 신뢰 관계를 유지하고 싶다는 의지의 표현일 수 있습니다.
+
+[리더의 목소리]
+1. "이의제기를 제대로 된 대화의 시작으로 봐요." — 사업팀 팀장, 경력 12년
+2. "진지하게 들어주면 결과가 바뀌지 않아도 신뢰는 오히려 올라가더라고요." — 전략팀 팀장, 경력 15년
+3. "먼저 구성원의 말을 다 듣는 게 핵심인 것 같아요." — 서비스 개발팀 팀장, 경력 10년
+
+[리더십 인사이트] 이의제기 대응, 3단계
+1단계: 감정 수용 → 2단계: 근거 재확인 → 3단계: 앞으로의 방향 제시
+
+[숫자로 보는 리더십]
+67% — 이의제기 후 리더 대응에 실망해 이직을 고려한 직원 비율
+4배 — 이의제기를 진지하게 들어준 리더의 팀 신뢰도 상승 효과
+82% — 결과가 바뀌지 않아도 경청만으로 수용도가 높아졌다는 직원 비율
+
+[리더의 질문]
+1. 구성원이 이의제기를 했을 때, 나의 첫 반응은 경청이었나요, 반박이었나요?
+2. 평가의 근거를 구체적인 사례로 설명할 준비가 되어 있나요?
+3. 면담이 끝난 후 구성원이 내 말을 들어줬다고 느꼈을까요?
+
+[실천 과제]
+• 면담 전, 해당 구성원의 평가 근거를 다시 한번 정리하세요
+• 먼저 다 들은 후에 말하세요
+• 결과와 관계없이 다음 반기 이야기로 마무리하세요
+
+[참고하세요!] 이런 말은 피하세요 — 이의제기 면담 NG 표현
+❌ "기준이 원래 그래요" → ✅ "평가 기준을 같이 짚어볼게요"
+❌ "다른 팀원들은 아무도 이의제기 안 했어요" → ✅ "말해줘서 고마워요"
+❌ "충분히 잘했다고 생각 안 해요" → ✅ "구체적인 이유를 설명드릴게요"`;
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.querySelector('.abtn:not(.jpg)');
+    btn.textContent = '복사됨 ✓';
+    setTimeout(() => btn.textContent = '텍스트 복사', 2000);
+  });
+}
+</script>
