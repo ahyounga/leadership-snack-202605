@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상황별 피드백 — 성과와 태도 둘 다 좋지 않은 경우</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', Arial, sans-serif; background: #f5f5f7; color: #222; line-height: 1.75; }
+
+/* 상단바 */
+.topbar { background: #1a1a2e; padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; }
+.topbar .logo { color: #fff; font-size: 18px; font-weight: 900; letter-spacing: 0.06em; }
+.topbar .logo span { color: #7F77DD; }
+.topbar .sub { font-size: 12px; color: rgba(255,255,255,0.45); }
+
+/* 히어로 */
+.hero { background: linear-gradient(135deg, #1a1a2e 0%, #2d2060 55%, #534AB7 100%); padding: 52px 40px 44px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -80px; right: -60px; width: 320px; height: 320px; border-radius: 50%; background: rgba(255,255,255,0.04); }
+.hero-tag { display: inline-block; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 20px; letter-spacing: 0.08em; margin-bottom: 18px; }
+.hero h1 { font-size: 38px; font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 10px; position: relative; z-index: 1; }
+.hero h1 .sub-title { display: block; font-size: 22px; font-weight: 700; color: #CECBF6; margin-top: 6px; }
+.hero-source { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 20px; position: relative; z-index: 1; }
+
+/* 래퍼 */
+.content { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+
+/* 툴바 */
+.toolbar { max-width: 760px; margin: 0 auto; padding: 20px 24px 0; display: flex; justify-content: flex-end; gap: 8px; }
+.abtn { font-family: inherit; font-size: 13px; padding: 8px 16px; border-radius: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; color: #555; }
+.abtn.print { background: #534AB7; color: #fff; border-color: #534AB7; font-weight: 700; }
+
+/* 고민 카드 */
+.worry-card { background: #fff; border-radius: 14px; padding: 36px 40px; margin: 28px 0 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); text-align: center; border-top: 4px solid #534AB7; }
+.worry-label { font-size: 13px; font-weight: 700; color: #888; letter-spacing: 0.06em; margin-bottom: 20px; }
+.worry-card .name { font-size: 15px; font-weight: 700; color: #534AB7; margin-bottom: 18px; }
+.worry-body { font-size: 15px; line-height: 1.95; color: #333; text-align: left; margin-bottom: 16px; }
+.worry-body .quote { display: block; background: #fafafa; border-left: 3px solid #CECBF6; border-radius: 0 8px 8px 0; padding: 12px 18px; margin: 10px 0; font-size: 14px; color: #555; font-style: italic; line-height: 1.8; }
+.worry-body .quote em { color: #c0392b; font-style: normal; font-weight: 700; }
+.worry-body strong { color: #534AB7; }
+.worry-question { margin-top: 20px; padding: 18px 22px; background: linear-gradient(135deg, #EEEDFE, #e4e2ff); border-radius: 10px; font-size: 15px; font-weight: 700; color: #3C3489; text-align: center; }
+
+/* 섹션 공통 */
+.section { background: #fff; border-radius: 14px; padding: 32px 36px; margin-bottom: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.section-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.section-badge { font-size: 11px; font-weight: 700; color: #534AB7; background: #EEEDFE; padding: 3px 12px; border-radius: 20px; letter-spacing: 0.06em; }
+.section h2 { font-size: 20px; font-weight: 900; color: #1a1a2e; margin-bottom: 14px; line-height: 1.4; }
+.section h2 .point { color: #534AB7; }
+.section p { font-size: 14px; line-height: 1.9; color: #444; margin-bottom: 12px; }
+.section p:last-child { margin-bottom: 0; }
+.section strong { color: #1a1a2e; font-weight: 700; }
+
+/* KSA 테이블 */
+.ksa-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+.ksa-table th { background: #534AB7; color: #fff; padding: 10px 14px; text-align: left; font-weight: 700; }
+.ksa-table th:first-child { border-radius: 8px 0 0 0; }
+.ksa-table th:last-child { border-radius: 0 8px 0 0; }
+.ksa-table td { padding: 11px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; color: #444; line-height: 1.7; }
+.ksa-table tr:nth-child(even) td { background: #fafafa; }
+.ksa-table tr:last-child td { border-bottom: none; }
+.ksa-label { font-weight: 700; color: #534AB7; }
+
+/* 곱셈 강조 */
+.multiply-box { background: linear-gradient(135deg, #1a1a2e, #3C3489); border-radius: 12px; padding: 20px 24px; margin: 16px 0; text-align: center; }
+.multiply-box p { font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.8; margin: 0; }
+.multiply-box strong { color: #CECBF6; }
+
+/* KSA 케이스 카드 */
+.ksa-cases { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+.ksa-case { border-radius: 10px; padding: 18px 20px; }
+.ksa-case.k { background: #E6F1FB; border-left: 4px solid #185FA5; }
+.ksa-case.s { background: #E1F5EE; border-left: 4px solid #0F6E56; }
+.ksa-case.a { background: #FAEEDA; border-left: 4px solid #854F0B; }
+.ksa-case-head { font-size: 13px; font-weight: 900; margin-bottom: 10px; }
+.ksa-case.k .ksa-case-head { color: #0C447C; }
+.ksa-case.s .ksa-case-head { color: #085041; }
+.ksa-case.a .ksa-case-head { color: #633806; }
+.ksa-quote { font-size: 13px; font-style: italic; color: #333; line-height: 1.75; margin-bottom: 10px; padding: 10px 14px; background: rgba(255,255,255,0.65); border-radius: 6px; }
+.ksa-desc { font-size: 13px; color: #555; line-height: 1.75; }
+
+/* 마무리 */
+.closing { background: linear-gradient(135deg, #1a1a2e, #3C3489); border-radius: 14px; padding: 36px 40px; margin-top: 8px; }
+.closing p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.9; margin-bottom: 12px; }
+.closing p:last-child { margin-bottom: 0; }
+.closing strong { color: #CECBF6; }
+
+/* 푸터 */
+.footer { text-align: center; padding: 28px; font-size: 12px; color: #aaa; }
+
+@media print {
+  .toolbar { display: none; }
+  body { background: #fff; }
+  .topbar, .hero, .closing, .multiply-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">H<span>S</span>G</div>
+  <div class="sub">HSG 조직개발연구소 김한솔 소장</div>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">상황별 피드백</div>
+  <h1>상황별 피드백
+    <span class="sub-title">#성과와 태도 둘 다 좋지 않은 경우</span>
+  </h1>
+  <p class="hero-source">HSG 조직개발연구소 김한솔 소장</p>
+</div>
+
+<div class="toolbar">
+  <button class="abtn print" onclick="window.print()">🖨️ 인쇄 / PDF 저장</button>
+</div>
+
+<div class="content">
+
+  <!-- 팀장의 고민 -->
+  <div class="worry-card">
+    <div class="worry-label">— 김 팀장의 고민 1 —</div>
+    <div class="name">저는 최근 팀장으로 승진했습니다.</div>
+    <div class="worry-body">
+      <p>시작은 나쁘지 않았어요. 몇 달 전까지만 해도 동포였던 구성원들은 감사하게도 저를 존중해 줬고, 저도 특별히 간섭하지 않아도 각자의 위치에서 해야 할 일들을 잘 해내는 듯 보였습니다.</p>
+      <p>하지만 한 달쯤 지나니 이제 슬슬 신경 쓰이는 것들이 생기네요. 특히 목표 달성률이 신통치 않은 최 대리가 눈에 띕니다.</p>
+      <span class="quote">예전부터 '뻔질거리기'로 유명했던 최 대리는<br>'요즘 회사에서 고객들의 전화를 안 받는다'느니<br>'시장 환경이 나쁜 것들이 너무 어이가 없다'는 말을 <em>자주 하고</em>,<br>최 대리가 <em>너무 안 좋아서 설 수가 없다</em>는 말이 많습니다.</span>
+      <p>최 대리, 대체 어떻게 해야 할까요?!</p>
+    </div>
+    <div class="worry-question">
+      신임 팀장님들이 가장 어려워하는 것이 있다면 아마도 <strong>'피드백'</strong>일 겁니다.<br>
+      특히 <strong>성과가 저조한 구성원에게</strong> 어떤 식으로 말을 해야 좋을지<br>
+      모르겠다는 분들이 많습니다.<br><br>
+      협박이 아닌, 구성원에게 진정으로 도움이 되는 피드백을 하려면 어떻게 해야 할까요?
+    </div>
+  </div>
+
+  <!-- KSA 설명 -->
+  <div class="section">
+    <div class="section-eyebrow">
+      <div class="section-badge">피드백 프레임워크</div>
+    </div>
+    <h2>먼저 <span class="point">원인을 파악</span>하세요 — KSA란?</h2>
+    <p>우선 피드백 대상자의 <strong>저조한 성과가 역량 때문인지, 일하는 방식에 문제가 있는지</strong> 살펴봐야 합니다. 위의 최 대리의 경우는 역량 자체가 부족한 상황이라 볼 수 있겠죠. 이때는 <strong>KSA 피드백</strong>을 해야 합니다. KSA는 성과를 내는 능력, 즉 역량의 3요소를 의미합니다.</p>
+
+    <table class="ksa-table">
+      <tr>
+        <th style="width:20%">구분</th>
+        <th style="width:40%">의미</th>
+        <th>예시</th>
+      </tr>
+      <tr>
+        <td><span class="ksa-label">Knowledge</span></td>
+        <td>학습을 통해 습득되는 특정 분야에 대한 정보</td>
+        <td style="color:#666; font-size:13px;">영업 사원의 경우 판매하는 상품/서비스에 대한 지식</td>
+      </tr>
+      <tr>
+        <td><span class="ksa-label">Skill</span></td>
+        <td>훈련을 통해서 습득되는 업무 수행 능력</td>
+        <td style="color:#666; font-size:13px;">엑셀, 파워포인트, 커뮤니케이션 능력 등</td>
+      </tr>
+      <tr>
+        <td><span class="ksa-label">Attitude</span></td>
+        <td>업무 진행 시 나타나는 태도&행동</td>
+        <td style="color:#666; font-size:13px;">영업할 때 적극적이다, 회의할 때 자꾸 딴짓을 한다 등</td>
+      </tr>
+    </table>
+
+    <div class="multiply-box">
+      <p>이 세 가지 중 어느 것 하나라도 부족하면 좋은 성과를 내기 힘듭니다.<br>
+      KSA는 덧셈의 관계가 아닌, <strong>어느 것 하나라도 '0'이면 모두 '0'이 되어 버리는 곱셈의 관계</strong>인 셈입니다.</p>
+    </div>
+
+    <p>예를 들어, 자전거가 움직이는 원리와 타는 방법 <strong>Knowledge</strong>을 알아도 연습 <strong>Skill</strong> 하지 않으면 계속 넘어지는 것처럼요. 그리고 몇 번 넘어졌다고 금세 포기 <strong>Attitude</strong>해 버리면 자전거 타기는 영원한 숙제가 돼 버리겠죠. 반대로, 수백 번 넘어져도 다시 일어나려는 노력 <strong>Skill & Attitude</strong>을 한다 해도 자전거 페달을 밟는 방법 <strong>Knowledge</strong>을 모른 채 연습만 하면 바퀴는 계속 헛돌 것입니다.</p>
+  </div>
+
+  <!-- KSA 케이스별 피드백 -->
+  <div class="section">
+    <div class="section-eyebrow">
+      <div class="section-badge">상황별 피드백 방법</div>
+    </div>
+    <h2>KSA를 활용한 <span class="point">피드백, 이렇게</span> 하세요</h2>
+
+    <div class="ksa-cases">
+      <div class="ksa-case k">
+        <div class="ksa-case-head">🔵 K가 부족한 경우 — 지식·정보가 부족할 때</div>
+        <div class="ksa-quote">"최 대리님이 고객과 통화를 하는 내용을 들어보니, 우리 상품의 특징에 대한 설명이 부족하다고요… 상품에 대한 연구가 좀 더 필요할 것 같아요. 개인 학습 시간을 가지면 좋겠습니다."</div>
+        <div class="ksa-desc">부족한 지식은 공부를 통해 해결할 수밖에 없습니다. 관련 세미나에 참석한다거나, 개인 학습 시간을 가져야만 합니다.</div>
+      </div>
+
+      <div class="ksa-case s">
+        <div class="ksa-case-head">🟢 S가 부족한 경우 — 실행 능력이 부족할 때</div>
+        <div class="ksa-quote">"고객이 거절했을 때 대응을 어려워하더군요. 고객의 반응별 / 상황별 시나리오를 써보고 반복적으로 연습하면 실전 통화에서 당황하는 일이 줄어들 거예요."</div>
+        <div class="ksa-desc">스킬은 꾸준한 반복을 통해 그 수준을 올릴 수 있습니다. 혼자 하기 어려워한다면 내부의 전문가를 매칭해 주는 등 꾸준히 연습할 수 있는 기회를 마련해 주세요.</div>
+      </div>
+
+      <div class="ksa-case a">
+        <div class="ksa-case-head">🟠 A가 부족한 경우 — 태도·마인드가 문제일 때</div>
+        <div class="ksa-quote">"'시장 상황이 안 좋아서 어쩔 수 없다'라는 말을 자주 하시더라고요. 각자 나름의 방향으로 노력하고 있는 다른 구성원들의 사기까지 저하시킬 수 있으니 이런 말은 자제 부탁하고, 대리님도 현 상황에서 해볼 수 있는 것이 무엇인지 찾는 노력을 해주면 좋겠습니다."</div>
+        <div class="ksa-desc">행동에 대한 비난이 아닌, 그 행동이 조직에 끼치는 부정적인 영향력을 설명해 행동 개선을 요구하시면 됩니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 마무리 -->
+  <div class="closing">
+    <p>어떤가요? 사람은 <strong>'이유'를 알아야 '납득'을 하고, '납득'이 됐을 때 '행동'이 바뀝니다.</strong></p>
+    <p>'설마 이 정도는 말 안 해도 알겠지'라며 그냥 넘어가셨나요? 성과가 부족한 구성원은 <strong>구체적인 KSA 피드백을 통해 부족한 역량을 기를 수 있도록 도와주세요.</strong></p>
+  </div>
+
+</div>
+
+<div class="footer">© HSG 조직개발연구소 · 김한솔 소장</div>
+
+</body>
+</html>
